@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .dcjq-parent.active > a.active {color: red !important}
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>
+</head>
+<body>
+<div id="sidebar" class="nav-collapse">
+    <div class="leftside-navigation">
+        <ul class="sidebar-menu" id="nav-accordion">
+            <li>
+                <a href="#" class="active">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a href="#">
+                    <i class="fa fa-book"></i>
+                    <span>Masters</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="#">Bank</a></li>
+                    <li class="sub-menu">
+                        <a href="#">
+                            <span>Calibration</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a href="#">Cycle Type</a></li>
+                            <li><a href="#">Status</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Company</a></li>
+                    <li><a href="#">Currency</a></li>
+                    <li><a href="#">Customer</a></li>
+                    <li><a href="#">Department</a></li>
+                    <li><a href="#">Employee</a></li>
+                    <li><a href="#">Industry Type</a></li>
+                    <li><a href="#">Shipping Agent</a></li>
+                    <li><a href="#">State</a></li>
+                    <li><a href="#">Supplier</a></li>
+                    <li><a href="#">Transporter</a></li>
+                    <li><a href="#">Unit</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+    $('ul.sub li').click(function (e) {
+        var $this = $(this);
+        $this.addClass('active').addClass('dcjq-parent');
+        $('.dcjq-parent.active > a').addClass('active');
+    });
+</script>
+</body>
+</html>

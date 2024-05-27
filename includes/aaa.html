@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .active > a.active {color: red !important}
+  </style>
+</head>
+<body>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div class="col-sm-12 container">
+  <ul class="nav nav-tabs" id="main-menu" >
+    <li class="active">
+      <a href="#home" data-toggle="tab" onclick="clickHome()">Home</a>
+    </li>
+    <li>
+      <a href="#contact"  data-toggle="tab" onclick='clickContact()'>Contact</a>
+    </li>
+  </ul>
+
+  <div class="tab-content clear-fix" >
+    <!-- Home-->
+    <div class="tab-pane active" id="home">
+      <ul class="nav nav-tabs" id="submenu">
+        <li>
+          <a href="#home1" data-toggle="tab">Home 1</a>
+        </li>
+        <li>
+          <a href="#home2" data-toggle="tab">Home 2</a>
+        </li>
+      </ul>
+      <div class="tab-content clear-fix" >
+        <div class="tab-pane active" id="home-content"> Home Content </div>
+        <div class="tab-pane" id="home1"> Home 1 Submenu</div>
+        <div class="tab-pane" id="home2">Home 2 Submenu</div>
+      </div>
+    </div>
+    <!-- End Home -->
+
+    <!-- Contact-->
+    <div class="tab-pane" id="contact">
+      <ul class="nav nav-tabs" id="submenu">
+        <li>
+          <a  href="#contact1" data-toggle="tab">Contact 1</a>
+        </li>
+        <li>
+          <a  href="#contact2" data-toggle="tab">Contact 2</a>
+        </li>
+      </ul>
+      <div class="tab-content clear-fix" >
+        <div class="tab-pane active" id="contact-content"> Contact Content</div>
+        <div class="tab-pane" id="contact1">Contact1 Content</div>
+        <div class="tab-pane" id="contact2">Contact2 Content</div>
+      </div>
+    </div>
+    <!-- End Contact -->
+
+  </div>
+
+</div>
+<script>
+  function clickHome(){
+
+    //$("#main-menu a").attr("aria-expanded", "true");
+    $('#home-content').show();
+    var ref = $(".tab-pane .active")
+    $(ref).each(function(){
+      $(this).removeClass("active");
+    })
+
+  };
+  function clickContact(){
+    $('#contact-content').show();
+    var ref = $(".tab-pane .active")
+    $(ref).each(function(){
+      $(this).removeClass("active");
+    })
+
+  }
+  $('#submenu a').click(function () {
+
+    $("#main-menu a").attr("aria-expanded", "false");
+
+  });
+
+</script>
+
+
+</body>
+</html>

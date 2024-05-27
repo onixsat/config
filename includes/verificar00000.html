@@ -1,0 +1,563 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>OnixSat Browser</title>
+	<meta charset='utf8'>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>
+	<style>
+
+		html, body{
+			position:relative;
+			font-family: monaco, monospace;
+			color:#c7c7c7;
+		}
+		html{
+			background:#232323;
+		}
+		body{
+			background:#000;
+			/*margin:0px;*/
+			margin:2px 4px;
+			padding:.5em 2em;
+		}
+		body::before{
+			/*content:'<<<';*/
+			background:#ccc;
+			position:absolute;
+			top:0;
+			left:0;
+			color:#000;
+		}
+
+
+
+
+		body {
+			display: grid;
+			/*grid-template-columns: auto 0px; */
+		}
+		/*
+        .top {
+          --offset: 50px;
+
+          position: sticky;
+          bottom: 20px;
+          margin-right:10px;
+          place-self: end;
+          /* margin-top: calc(100vh + var(--offset));
+          text-decoration: none;
+          /* padding: 10px;
+          padding: 0px;
+          font-family: sans-serif;
+          color: #fff;
+          background: #000;
+          border-radius: 100px;
+          white-space: nowrap;
+        }
+                */
+		body {
+			scroll-behavior: smooth;
+		}
+
+
+
+
+		h1{
+			text-align:center;
+			margin:1em 0;
+		}
+		h1 span{
+			/*background:blue;*/
+			color:#8C7612;
+			font-weight:normal;
+			font-size:1rem;
+			position:relative;
+			text-align:center;
+		}
+		h1, h2, h3, h4, h5, h6{
+			font-weight:normal;
+			font-size:1rem;
+			margin:1rem 0;
+		}
+		h3{
+			margin-left:1em;
+		}
+		strong{
+			color:#FF6E67;
+		}
+		em, blockquote{
+			color:#6971FF;
+			font-style:normal;
+		}
+		ul, ol, title{
+			color:#CA30C7;
+		}
+		ul{
+			list-style-type:none;
+		}
+		ul li:before{
+			content:'* '
+		}
+		ul ul {
+			padding-left: 4.25em;
+		}
+		p{
+			margin:1em 2em;
+		}
+		a{
+			color:#00C300;
+			text-decoration:none;
+		}
+		a:hover, a:focus{
+			color:#8C7612;
+		}
+		ol{
+			margin-left:1.5em;
+		}
+		blockquote{
+			margin-left:1em;
+		}
+		code, pre{
+			font:inherit;
+			color: #00A5A7;
+		}
+		hr{
+			/*	margin: 10px 0px 5px 0px;*/
+			border:none;
+			background-image: linear-gradient(to right, #8C7612 95%, rgba(255, 255, 255, 0) 5%);
+			background-position: top;
+			height:1px;
+			background-size: 8px 1px;
+			background-repeat: repeat-x;
+		}
+		title{
+			display:block;
+			text-align:right;
+		}
+		th{
+			color: #C7C500;
+		}</style>
+	<style>
+		#sub-nav  > .active {color: darkcyan;}
+		.tabs li a.active { color: darkcyan; }
+		/*.tabs li a {font-size:20px;}*/
+		#sub-nav li a {margin-left:0px;}
+	</style>
+	<style type='text/css'>
+		pre {
+			width: 80%;
+			max-height: 490px;
+			color: #fff;
+			padding: 0px 0px 10px 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			word-wrap: normal;
+			overflow: auto;
+			font-family: courier, monospace;
+			white-space: pre;
+		}
+		pre span {color: #868686;font-size: 14px}
+		pre div {margin-bottom: -15px;font-size: 15px}
+
+
+	</style>
+	<style>
+
+		/** Start: to style navigation tab **/
+		/*.nav {
+          margin-bottom: 18px;
+          margin-left: 0;
+          list-style: none;
+        }
+
+        .nav > li > a {
+          display: block;
+        }
+
+        .nav-tabs{
+          *zoom: 1;
+        }
+
+        .nav-tabs:before,
+        .nav-tabs:after {
+          display: table;
+          content: "";
+        }
+
+        .nav-tabs:after {
+          clear: both;
+        }
+
+        .nav-tabs > li {
+          float: left;
+        }
+
+        .nav-tabs > li > a {
+          padding-right: 12px;
+          padding-left: 12px;
+          margin-right: 2px;
+          line-height: 14px;
+        }
+
+        .nav-tabs {
+          border-bottom: 1px solid #ddd;
+        }
+
+        .nav-tabs > li {
+          margin-bottom: -1px;
+        }
+
+        .nav-tabs > li > a {
+          padding-top: 8px;
+          padding-bottom: 8px;
+          line-height: 18px;
+          border: 1px solid transparent;
+          -webkit-border-radius: 4px 4px 0 0;
+             -moz-border-radius: 4px 4px 0 0;
+                  border-radius: 4px 4px 0 0;
+        }
+
+        .nav-tabs > li > a:hover {
+          border-color: #eeeeee #eeeeee #dddddd;
+        }
+
+        .nav-tabs > .active > a,
+        .nav-tabs > .active > a:hover {
+          color: #555555;
+          cursor: default;
+          background-color: #ffffff;
+          border: 1px solid #ddd;
+          border-bottom-color: transparent;
+        }
+
+        li {
+          line-height: 18px;
+        }
+*/
+		.tab-content.active{
+			display: block;
+		}
+
+		.tab-content.hide{
+			display: none;
+		}
+
+
+		/** End: to style navigation tab **/
+
+
+		#btn-back-to-top {
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			display: none;
+			border-radius: 100%;
+			background: #141c38;
+			padding: 0.5rem;
+			border: none;
+			cursor: pointer;
+			opacity: 100%;
+			transition: opacity 0.5s;
+		}
+
+		.back-to-top:hover {
+			opacity: 60%;
+		}
+
+		.hidden {
+			opacity: 0%;
+		}
+
+		.back-to-top-icon {
+			width: 1rem;
+			height: 1rem;
+			color: #7ac9f9;
+		}
+
+		html {
+			height: 100%;
+		}
+		body {
+			min-height: 100%;
+		}
+	</style>
+	<style>
+
+		/* OUTRO */
+
+		/* OUTRO */
+		.hide {
+			display: none;
+		}
+		/* OUTRO */
+		.footer {
+			width: 100%;
+			height: 12%;
+			background-color: black;
+			display: flex;
+			align-items: center;
+			background-size: 100% 100%;
+			justify-content: center;
+			vertical-align: middle;
+		}
+
+		.footer p {
+			color: white;
+			font-size: 0.7em;
+			font-family: inherit;
+		}
+
+		/* OUTRO */
+		/*#sub-nav  > .active {background:#AAA;}
+		.tabs li a.active { background: green; }
+		.tabs li a {font-size:20px;}
+		#sub-nav li a {font-size:16px; margin-left:20px;}
+		.tab {
+			display: inline-block;
+			padding: 5px;
+			/*border: 1px solid #ccc;
+		}*/
+		.tab-content {display: block;}
+		.tab-content.active {display: block;}
+
+		/* OUTRO */
+		.page {display: none;}
+		.page.active {display: block;}
+	</style>
+</head>
+<body>
+<div id="content" style="display: none;">
+	<hr>
+	<h1 style="max-height: 20px;">OnixSat - Browser</h1>
+<style>
+	ul.sub > li.active {background:#EFEFEF;} ul.tabs> li.active {background:pink;}
+
+</style>
+		<nav>
+		<ul id="top-menu-bar" class="tabs nav nav-tabs">
+			<li class="active"><a class="active" href="#home">Home</a></li>
+
+			<a href="#" onclick="show('section1links','section1b')">show section 1b</a>
+			<a href="#" onclick="show('section2links','section2b')">show section 2c</a>
+
+
+			<li class="accordion">
+				<a href="#" onclick="show('section1links','section1a')">Servidor</a>
+				<ul class="sub">
+					<li><a href="#" onclick="show('section1links','section1b')">Hostname</a></li>
+					<li><a href="#" onclick="show('section1links','section1c')">hosts</a></li>
+				</ul>
+			</li>
+			<li class="accordion">
+				<a href="#email">Email</a>
+				<ul id="sub-nav">
+					<li><a href="#mailips">Mailips</a></li>
+					<li><a href="#mailhelo">Mailhelo</a></li>
+				</ul>
+			</li>
+
+			<li><a href="#outros">Outros</a></li>
+			<li class="last-item"><a href="#sobre">Sobre</a></li>
+		</ul>
+		</nav>
+	<div id="section1">
+		<div id="section1a" class="section1links hide">
+			<h1><b>Servidor</b></h1>
+		</div>
+		<div id="section1b" class="section1links hide">
+			<p>hostname</p>
+		</div>
+		<div id="section1c" class="section1links hide">
+			<p>nano /etc/hosts</p>
+			<pre>
+				<div># Verificar se o ficheiro está correto.</div>
+				<span>
+		51.75.90.235 51-75-90-235.cprapid.com 51-75-90-235
+
+		94.23.75.50 	mail.smartiptv.pt mail
+		127.0.0.1 		localhost srv
+		127.0.0.1		localhost srv.smartiptv.pt srv
+
+		54.38.191.102           srv.smartiptv.pt srv</span>
+			</pre>
+		</div>
+	</div>
+
+	<div id="section2">
+		<div id="section2a" class="section2links">section2a</div>
+		<div id="section2b" class="section2links hide">section2b</div>
+		<div id="section2c" class="section2links hide">section2c</div>
+	</div>
+<script>
+	function show(group, sectiontoshow) {
+		$('.' + group).removeClass('hide').not('#' + sectiontoshow).addClass('hide');
+	}
+</script>
+
+		<div class='page active' id='home'>
+			<p>This is the demo page for the <strong>Lynx.css</strong> <em>text</em> demonstration site.</p>
+			<h2 id='home'>Installation Instructions</h2>
+		</div>
+		<div class="page" id="servidor">
+			<h1><b>Servidor</b></h1>
+			<div class="page" id="hostname">
+				<p>hostname</p>
+			</div>
+			<div class="page" id="hosts">
+				<p>nano /etc/hosts</p>
+				<pre>
+				<div># Verificar se o ficheiro está correto.</div>
+				<span>
+		51.75.90.235 51-75-90-235.cprapid.com 51-75-90-235
+
+		94.23.75.50 	mail.smartiptv.pt mail
+		127.0.0.1 		localhost srv
+		127.0.0.1		localhost srv.smartiptv.pt srv
+
+		54.38.191.102           srv.smartiptv.pt srv</span>
+			</pre>
+			</div>
+		</div>
+		<div class="page" id="email">Email.</div>
+		<div class="page" id="outros"><h1><b>Outros</b></h1></div>
+		<div class="page" id="sobre"><h1><b>Sobre</b></h1></div>
+	<hr style="margin: 10px 245px 10px 245px;
+		border: none;
+		background-image: linear-gradient(to right, #494015 95%, rgba(255, 255, 255, 0) 5%);
+		background-position: top;
+		height: 1px;
+		background-size: 8px 1px;
+		background-repeat: repeat-x;" />
+	<div class="footer">
+	  <p>Este sistema foi desenvolvido por <code>OnixSat 2024</code>.</p>
+	 </div>
+	<button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+	  <i class="fas fa-arrow-up"></i>
+
+		<svg xmlns="http://www.w3.org/2000/svg" class="back-to-top-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12" />
+	  </svg>
+
+
+	</button>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+	(function(){
+		$('.tabs .sub li').bind('click', function(e){
+			var el   = $(this),
+					list = $('.tabs').find('li');
+			list.removeClass('active');
+			el.addClass('active').parents('li').addClass('active');
+		});
+	}());
+
+
+
+	$("ul.tabs li").click(function() {
+		// remove .active from all li descendants
+		$("ul.tabs li").not(this).removeClass("active");
+
+		$(this)
+				.addClass("active")
+				.not('.accordion')
+				.parents("li:first").addClass("active");
+		return false;
+	});
+
+
+	$("ul.tabs > li").click(function() {
+		// remove .active from all li descendants
+		$("ul.tabs li").not(this).removeClass("active");
+
+		$(this).addClass("active").find(".sub li").addClass("active");
+	});
+
+	$('ul.sub li').click(function (e) {
+		var $this = $(this);
+		$this.addClass('active').addClass('dcjq-parent');
+		$('.dcjq-parent.active > a').addClass('active');
+	});
+
+
+$(document).ready(function () {
+
+
+	var xxx = location.hash;
+
+	if (xxx) {
+		document.querySelector('.active').classList.remove('active');
+		//alert("tem hash");
+
+		let kkk = document.querySelector(".page.active");
+		if (kkk) {
+			kkk.classList.remove("active");
+			//alert("tem hash e rm class");
+		}
+		kkk.classList.toggle("active");
+	}else{
+		//alert("n tem hash");
+	}
+
+	$(location.hash).addClass( 'active' );
+	function setActive() {
+		setTimeout(function () {
+		var hash = window.location.hash.substr(1);
+		if (hash) {
+			$('a[href*="#"]').removeClass('active');
+			$('a[href="#' + hash + '"]').addClass('active').not('.accordion')
+					.parents("li:first").addClass("active");
+		}
+		}, 15);
+	}
+	setActive(); // On Page Load
+
+	$('a[href*="#"]').click(function () { // On link click
+		setActive();
+	});
+
+	let menuBar = document.querySelector("#top-menu-bar");
+	menuBar.addEventListener("click", function(e) {
+		//e.preventDefault();
+		let nav = e.target;
+		let targetPage = nav.getAttribute("href");
+		if (targetPage) {
+			let visible = document.querySelector(".page.active");
+			if (visible) {
+				visible.classList.remove("active");
+			}
+			let target = document.querySelector(targetPage);
+			target.classList.toggle("active");
+		}
+	});
+	$('#content').toggle("slow");
+});
+</script>
+<script>
+	//Get the button
+	let mybutton = document.getElementById("btn-back-to-top");
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function () {
+	scrollFunction();
+	};
+	function scrollFunction() {
+	if (
+	document.body.scrollTop > 20 ||
+	document.documentElement.scrollTop > 20
+	) {
+	mybutton.style.display = "block";
+	} else {
+	mybutton.style.display = "none";
+	}
+	}
+	// When the user clicks on the button, scroll to the top of the document
+	mybutton.addEventListener("click", backToTop);
+	function backToTop() {
+	document.body.scrollTop = 0;
+	document.documentElement.scrollTop = 0;
+	}
+</script>
+</body>
+</html>

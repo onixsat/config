@@ -1,0 +1,151 @@
+---------------------------------------------------------------
+
+OnixSat - Browser
+
+- Home
+-  Servidor
+
+- Hostname
+- hosts
+
+-  Email
+
+- Mailips
+- Mailhelo
+
+- Outros
+- Sobre
+
+This is the demo page for the Lynx.css text demonstration site.
+
+Installation Instructions
+
+Servidor
+
+hostname
+
+nano /etc/hosts
+
+# Verificar se o ficheiro está correto.
+
+51.75.90.235 51-75-90-235.cprapid.com 51-75-90-235
+
+		94.23.75.50	mail.smartiptv.pt mail
+		127.0.0.1		localhost srv
+		127.0.0.1		localhost srv.smartiptv.pt srv
+
+		54.38.191.102           srv.smartiptv.pt srv
+
+Mail
+
+nano /etc/mailips
+
+# Verificar se o ficheiro está correto.
+
+smartiptv.pt: 94.23.75.50
+				mail.smartiptv.pt: 94.23.75.50
+				srv.smartiptv.pt: 94.23.75.50
+				*: 54.38.191.102
+
+nano /etc/mailhelo
+
+# Verificar se o ficheiro está correto.
+
+smartiptv.pt: mail.smartiptv.pt
+		mail.smartiptv.pt: mail.smartiptv.pt
+		srv.smartiptv.pt: mail.smartiptv.pt
+		*: srv.smartiptv.pt
+
+Outros
+
+Mail
+
+Descrição
+
+Ver o titulo
+
+---------------------------------------------------------------
+
+https://srv.smartiptv.pt:2087/cpsess4411736012/scripts/srvmng
+
+https://srv.smartiptv.pt:2087/cpsess4411736012/scripts/dosrvmng?tailwatchd=1&tailwatchdmonitor=-1&tailwatchd-subopt=Cpanel%3A%3ATailWatch%3A%3AAPNSPush&tailwatchd-subopt=Cpanel%3A%3ATailWatch%3A%3AChkServd&tailwatchd-subopt=Cpanel%3A%3ATailWatch%3A%3AEximstats&tailwatchd-subopt=Cpanel%3A%3ATailWatch%3A%3AMailHealth&tailwatchd-subopt=Cpanel%3A%3ATailWatch%3A%3AModSecLog&tailwatchd-subopt=Cpanel%3A%3ATailWatch%3A%3ARecentAuthedMailIpTracker&tailwatchd-subopt=Cpanel%3A%3ATailWatch%3A%3AcPBandwd&cpanel_php_fpm=1&cpanel_php_fpmmonitor=1&cpdavd=1&cpdavdmonitor=1&cphulkd=1&cphulkdmonitor=1&crondmonitor=1&dnsadminmonitor=1&exim=1&eximmonitor=1&exim-altportnum=26&httpd=1&httpdmonitor=1&imap=1&imapmonitor=1&ipaliases=1&ipaliasesmonitor=1&lmtpmonitor=1&mailman=1&mailmanmonitor=1&mysql=1&mysqlmonitor=1&named=1&namedmonitor=1&nscd=1&nscdmonitor=1&p0f=1&p0fmonitor=1&pop=1&popmonitor=1&spamd=1&spamdmonitor=1&sshd=1&sshdmonitor=1&rsyslogd=1&rsyslogdmonitor=1
+
+An emphasized couple of words.
+
+An emphasized phrase with a strong word.
+
+A strong phrase with an emphasized word.
+
+---------------------------------------------------------------
+
+Ver o titulo
+
+- https://srv.smartiptv.pt:2087/cpsess4411736012/scripts2/basic_exim_editor#tab_DomainsandIPs
+
+---------------------------------------------------------------
+
+Code
+
+Domains and IPs
+
+	
+Send mail from the account’s IP address
+?
+
+Automatically send outgoing mail from the account’s IPv4 address rather than the servers’ default IP address.
+
+- 
+On
+- 
+Off
+
+default
+
+	
+Use the reverse DNS entry for the mail HELO/EHLO if available
+?
+
+The system will use the reverse DNS name for each IP address as the HELO for all outgoing SMTP connections. This only applies during the HELO/EHLO commands.
+
+- 
+On
+
+default
+- 
+Off
+
+	
+Reference /etc/mailhelo for custom outgoing SMTP HELO
+?
+
+Send HELO based on the domain name in /etc/mailhelo (
+more information
+)
+
+- 
+On
+- 
+Off
+
+default
+
+	
+Reference /etc/mailips for custom IP on outgoing SMTP connections
+?
+
+Send outgoing mail from the IP address that matches the domain name in /etc/mailips (
+more information
+)
+
+- 
+On
+- 
+Off
+
+default
+
+Sobre
+
+---------------------------------------------------------------
+
+Este sistema foi desenvolvido por OnixSat 2024.
